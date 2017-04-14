@@ -1,6 +1,7 @@
 import gi
 gi.require_version('Gtk','3.0')
 from gi.repository import Gtk
+from math import *
 
 class calcWindow(Gtk.Window):
 	def __init__(self):
@@ -21,9 +22,9 @@ class calcWindow(Gtk.Window):
 		def clear():
 			entry.set_text = ""	
 
-		def eval(self):
+		def evaluate(self):
 			eq = entry.get_text()
-			print(eq)
+			entry.set_text(str(eval(eq)))
 
 		
 
@@ -70,7 +71,7 @@ class calcWindow(Gtk.Window):
 			i.connect('clicked', button_clicked)
 
 		#connecting special buttons
-		ans.connect('clicked',eval)
+		ans.connect('clicked',evaluate)
 		ac.connect('clicked',clear)
 		delete.connect('clicked',delsingle)
 
