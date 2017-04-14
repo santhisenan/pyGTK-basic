@@ -19,8 +19,8 @@ class calcWindow(Gtk.Window):
 			text = text + button.props.label
 			entry.set_text(text)
 		
-		def clear():
-			entry.set_text = ""	
+		def cleartext(self):
+			entry.set_text("")
 
 		def evaluate(self):
 			eq = entry.get_text()
@@ -57,7 +57,7 @@ class calcWindow(Gtk.Window):
 
 		openbr = Gtk.Button(label = "(")
 		closebr = Gtk.Button(label = ")")
-		pwr = Gtk.Button(label = "^")
+		clear = Gtk.Button(label = "C")
 		root = Gtk.Button(label = "root")
 		log = Gtk.Button(label = "log")
 
@@ -66,14 +66,15 @@ class calcWindow(Gtk.Window):
 		for button_name in other_buttons:
 			button_name.connect('clicked', button_clicked)
 
-		digits=(button1, button2,button3,button4,button5,button6,button7,button8,button9,button0)
+		digits=(button1, button2,button3,button4,button5,button6,button7,button8,button9,button0,openbr,closebr)
 		for i in digits:
 			i.connect('clicked', button_clicked)
 
 		#connecting special buttons
 		ans.connect('clicked',evaluate)
-		ac.connect('clicked',clear)
+		#ac.connect('clicked',clear)
 		delete.connect('clicked',delsingle)
+		clear.connect("clicked",cleartext)
 
 
 
@@ -96,7 +97,7 @@ class calcWindow(Gtk.Window):
 
 		grid.attach_next_to(openbr,button9,Gtk.PositionType.TOP,1,1)
 		grid.attach_next_to(closebr,button8,Gtk.PositionType.TOP,1,1)
-		grid.attach_next_to(pwr,button7,Gtk.PositionType.TOP,1,1)
+		grid.attach_next_to(clear,button7,Gtk.PositionType.TOP,1,1)
 		grid.attach_next_to(delete,divide,Gtk.PositionType.TOP,1,1)
 
 
